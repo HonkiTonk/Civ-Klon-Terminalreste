@@ -1,0 +1,79 @@
+procedure NeueTasteFestlegenTerminal
+   is begin
+      
+      NeueAuswahl := TastenbelegungDatentypen.Tastenbelegung_Enum'Val (1);
+         
+      if
+        EingabeTerminal.Tastenbelegung (1, NeueAuswahl) = NeueTasteTerminal
+        or
+          EingabeTerminal.Tastenbelegung (2, NeueAuswahl) = NeueTasteTerminal
+      then
+         null;
+            
+      elsif
+        EingabeTerminal.Tastenbelegung (1, NeueAuswahl) = NUL
+      then
+         EingabeTerminal.Tastenbelegung (1, NeueAuswahl) := NeueTasteTerminal;
+            
+      elsif
+        EingabeTerminal.Tastenbelegung (2, NeueAuswahl) = NUL
+      then
+         EingabeTerminal.Tastenbelegung (2, NeueAuswahl) := NeueTasteTerminal;
+            
+      else
+         EingabeTerminal.Tastenbelegung (2, NeueAuswahl) := EingabeTerminal.Tastenbelegung (1, NeueAuswahl);
+         EingabeTerminal.Tastenbelegung (1, NeueAuswahl) := NeueTasteTerminal;
+      end if;
+      
+   end NeueTasteFestlegenTerminal;
+
+
+
+procedure AlteTasteEntfernenTerminal
+   is begin
+      
+      -- TextAnzeigeTerminal.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
+      --                                          TextDateiExtern        => GlobaleTexte.Zeug,
+      --                                          ÜberschriftZeileExtern => 0,
+      --                                          ErsteZeileExtern       => 46,
+      --                                          LetzteZeileExtern      => 46,
+      --                                          AbstandAnfangExtern    => GlobaleTexte.Leer,
+      --                                          AbstandMitteExtern     => GlobaleTexte.Leer,
+       --                                         AbstandEndeExtern      => GlobaleTexte.Neue_Zeile);
+               
+      NeueAuswahl := TastenbelegungDatentypen.Tastenbelegung_Enum'Val (1);
+               
+      Put_Line (Item => EingabeTerminal.Tastenbelegung (1, NeueAuswahl) & "    " & EingabeTerminal.Tastenbelegung (2, NeueAuswahl));
+               
+      -- TextAnzeigeTerminal.AnzeigeOhneAuswahlNeu (ÜberschriftDateiExtern => GlobaleTexte.Leer,
+      --                                          TextDateiExtern        => GlobaleTexte.Fragen,
+      --                                          ÜberschriftZeileExtern => 0,
+      --                                          ErsteZeileExtern       => 29,
+      --                                          LetzteZeileExtern      => 29,
+      --                                          AbstandAnfangExtern    => GlobaleTexte.Leer,
+      --                                          AbstandMitteExtern     => GlobaleTexte.Leer,
+      --                                          AbstandEndeExtern      => GlobaleTexte.Neue_Zeile);
+      
+      NeueTasteTerminal := EingabeTerminal.TastenEingabe;
+      
+      BelegungFeldSchleife:
+      for BelegungFeldSchleifenwert in EingabeTerminal.TastenbelegungArray'Range (1) loop
+         BelegungPositionSchleife:
+         for BelegungPositionSchleifenwert in EingabeTerminal.TastenbelegungArray'Range (2) loop
+            
+            if
+              EingabeTerminal.Tastenbelegung (BelegungFeldSchleifenwert, BelegungPositionSchleifenwert) = NeueTasteTerminal
+              and
+                BelegungPositionSchleifenwert /= NeueAuswahl
+            then
+               EingabeTerminal.Tastenbelegung (BelegungFeldSchleifenwert, BelegungPositionSchleifenwert) := NUL;
+               exit BelegungFeldSchleife;
+               
+            else
+               null;
+            end if;
+            
+         end loop BelegungPositionSchleife;
+      end loop BelegungFeldSchleife;
+      
+   end AlteTasteEntfernenTerminal;

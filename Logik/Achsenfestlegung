@@ -1,0 +1,103 @@
+
+   
+   
+   
+   procedure AlteYAchseFestlegenTerminal
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+   is begin
+      
+      if
+        SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt.YAchse + Sichtweiten.BewegungsfeldLesen > Karten.Karteneinstellungen.Kartengröße.YAchse
+      then
+         if
+           SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell.YAchse < SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt.YAchse - Sichtweiten.BewegungsfeldLesen
+           and
+             SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell.YAchse
+           > SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt.YAchse + Sichtweiten.BewegungsfeldLesen - Karten.Karteneinstellungen.Kartengröße.YAchse
+         then
+            SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt.YAchse := SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell.YAchse;
+            
+         else
+            null;
+         end if;
+         
+      elsif
+        SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt.YAchse - Sichtweiten.BewegungsfeldLesen < Karten.WeltkarteArray'First (2)
+      then
+         if
+           SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell.YAchse > SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt.YAchse + Sichtweiten.BewegungsfeldLesen
+           and
+             SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell.YAchse
+           < SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt.YAchse - Sichtweiten.BewegungsfeldLesen + Karten.Karteneinstellungen.Kartengröße.YAchse
+         then
+            SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt.YAchse := SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell.YAchse;
+            
+         else
+            null;
+         end if;
+         
+      else
+         if
+           SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell.YAchse > SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt.YAchse + Sichtweiten.BewegungsfeldLesen
+           or
+             SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell.YAchse < SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt.YAchse - Sichtweiten.BewegungsfeldLesen
+         then
+            SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt.YAchse := SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell.YAchse;
+            
+         else
+            null;
+         end if;
+      end if;
+      
+   end AlteYAchseFestlegenTerminal;
+   
+   
+   
+   procedure AlteXAchseFestlegenTerminal
+     (RasseExtern : in RassenDatentypen.Rassen_Verwendet_Enum)
+   is begin
+      
+      if
+        SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt.XAchse + Sichtweiten.BewegungsfeldLesen > Karten.Karteneinstellungen.Kartengröße.XAchse
+      then
+         if
+           SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell.XAchse < SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt.XAchse - Sichtweiten.BewegungsfeldLesen
+           and
+             SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell.XAchse
+           > SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt.XAchse + Sichtweiten.BewegungsfeldLesen - Karten.Karteneinstellungen.Kartengröße.XAchse
+         then
+            SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt.XAchse := SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell.XAchse;
+            
+         else
+            null;
+         end if;
+         
+      elsif
+        SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt.XAchse - Sichtweiten.BewegungsfeldLesen < Karten.WeltkarteArray'First (3)
+      then
+         if
+           SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell.XAchse > SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt.XAchse + Sichtweiten.BewegungsfeldLesen
+           and
+             SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell.XAchse
+           < SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt.XAchse - Sichtweiten.BewegungsfeldLesen + Karten.Karteneinstellungen.Kartengröße.XAchse
+         then
+            SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt.XAchse := SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell.XAchse;
+            
+         else
+            null;
+         end if;
+         
+      else
+         if
+           SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell.XAchse > SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt.XAchse + Sichtweiten.BewegungsfeldLesen
+           or
+             SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell.XAchse < SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt.XAchse - Sichtweiten.BewegungsfeldLesen
+         then
+            SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAlt.XAchse := SpielVariablen.CursorImSpiel (RasseExtern).KoordinatenAktuell.XAchse;
+            
+         else
+            null;
+         end if;
+      end if;
+      
+   end AlteXAchseFestlegenTerminal;
